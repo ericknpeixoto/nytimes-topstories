@@ -1,9 +1,7 @@
 # New York Times - Top Stories
 *Beyond the headlines: What insights can we uncover from the news displayed in the front page of the world's biggest newspaper?*
 
-___
-
-##About this project
+## About this project
 
 The New York Times provides API endpoints that allow users to get data from their website, including news from a specific period, reviews and the top stories - which is the data source of this project.
 
@@ -17,12 +15,13 @@ This project is based in the "Lago do Mago" project built by Teo Me Why. Téo pr
 
 His videos can be found at https://www.youtube.com/@teomewhy
 
-##**Project's Architecture**
+## **Project's Architecture**
 
 ### Ingestion Pipelines
 The Medallion Architecture is the foundation of the data structure of the project.
 
-<img width="1195" height="727" alt="Architecture" src="https://github.com/user-attachments/assets/5326bc02-4b63-4094-86f5-9a1cdfb0a259" />
+<img width="1240" height="675" alt="image" src="https://github.com/user-attachments/assets/561bbba1-7ad1-49de-8b6b-c1cfd46ae726" />
+
 
 **1. Raw Data Layer**
 
