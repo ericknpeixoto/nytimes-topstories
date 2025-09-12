@@ -20,7 +20,7 @@ His videos can be found at https://www.youtube.com/@teomewhy
 ### Ingestion Pipelines
 The Medallion Architecture is the foundation of the data structure of the project.
 
-<img width="1240" height="675" alt="image" src="https://github.com/user-attachments/assets/561bbba1-7ad1-49de-8b6b-c1cfd46ae726" />
+<img width="1252" height="695" alt="image" src="https://github.com/user-attachments/assets/2011efd5-45ea-4917-8ff9-1879e73698e7" />
 
 
 **1. Raw Data Layer**
