@@ -31,7 +31,7 @@ The second part aims to be a Data Analytics and Science project, using the data 
 ### 1. Data Pipeline
 
 \
-The pipeline has been built using the Medallion Architecture. It divides the process in Raw, Bronze, Silver and Gold Data Layers, each one with specif level of cleaning and treatments. The picture bellow illustrates how the workflow has been designed.
+The pipeline has been built using the Medallion Architecture. It divides the process in Raw, Bronze, Silver and Gold Data Layers, each one with specific level of cleaning and treatments. The picture bellow illustrates how the workflow has been designed.
 
 \
 <img width="1252" height="695" alt="image" src="https://github.com/user-attachments/assets/2011efd5-45ea-4917-8ff9-1879e73698e7" />

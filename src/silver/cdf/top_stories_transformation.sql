@@ -11,4 +11,4 @@ SELECT
   per_facet AS ds_persons,
   published_date,
   ref_date AS ref_date
-FROM bronze.nytimes.top_stories
+FROM source_table
