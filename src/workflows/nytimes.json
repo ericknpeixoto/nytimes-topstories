@@ -54,9 +54,13 @@
         "notebook_task": {
           "notebook_path": "src/silver/cdf/Silver - Ingestion",
           "base_parameters": {
-            "database_name": "silver",
-            "schema_name": "nytimes",
-            "table_name": "top_stories"
+            "database_from": "bronze",
+            "schema_name_from": "nytimes",
+            "table_name_from": "top_stories",
+            "database_to": "silver",
+            "schema_name_to": "nytimes",
+            "table_name_to": "top_stories",
+            "partition_field_to": "ref_date"
           },
           "source": "GIT"
         },
