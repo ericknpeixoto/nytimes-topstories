@@ -34,7 +34,7 @@ The second part aims to be a Data Analytics and Science project, using the data 
 The pipeline has been built using the Medallion Architecture. It divides the process in Raw, Bronze, Silver and Gold Data Layers, each one with specific level of cleaning and treatments. The picture bellow illustrates how the workflow has been designed.
 
 \
-<img width="1252" height="695" alt="image" src="https://github.com/user-attachments/assets/2011efd5-45ea-4917-8ff9-1879e73698e7" />
+<img width="1252" height="695" alt="image" src="Pipeline Screenshot.png" />
 
 
 #### 1.1 Data Layers
@@ -54,7 +54,34 @@ With the raw data saved to S3, we read this data using a Scheduled Job in Databr
 
 This is where we start to do some treatments in our data. The columns are renamed for better readbility, the "author" collumn is treated to keep a pattern with the other list columns, and we also remove the columns that won't be useful in our future analysis. The Silver table is updated using the Delta Change Data Feed feature, allowing us to identify changes made to the Bronze table, and processing only this new data into the Silver table, improving running time and costs.
 
+\
+**List of Transformations:**
 
+
+| Bronze || Silver ||
+|--|--|--|--|
+|Bronze Column Name | Bronze Column Type | Silver Column Name | Silver Column Type |
+| title | string | ds_headline | string |
+| abstract | string | ds_lead | string |
+| byline | string | ds_authors | array |
+| section | string | ds_section | string |
+| subsection | string | ds_subsection | string |
+| url | string | ds_url | string |
+| geo_facet | array | ds_locations | array
+| des_facet | array | ds_topics | array
+| org_facet | array | ds_organizations | array
+| perc_facet | array | ds_persons | array
+| published_date | string | - | -
+| ref_date | string | - | -
+| short_url | string | removed | -
+| multimedia | array | removed | - 
+| item_type | string | removed |-
+| kicker | string | removed | -
+| material_type_facet | string | removed | -
+| created_date | string | removed | - 
+| uri | string | removed | - 
+
+\
 **1.1.4 Gold Data Layer**
 
 *Coming in future updates...*
