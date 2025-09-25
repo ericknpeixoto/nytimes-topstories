@@ -29,9 +29,6 @@
         },
         "timeout_seconds": 0,
         "email_notifications": {
-          "on_success": [
-            "DATABRICKS_USER"
-          ],
           "on_failure": [
             "DATABRICKS_USER"
           ]
@@ -67,9 +64,6 @@
         "timeout_seconds": 0,
 
         "email_notifications": {
-          "on_success": [
-            "DATABRICKS_USER"
-          ],
           "on_failure": [
             "DATABRICKS_USER"
           ]
