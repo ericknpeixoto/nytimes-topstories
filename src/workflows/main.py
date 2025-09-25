@@ -27,7 +27,7 @@ def load_settings(job_name):
     new_settings['new_settings']['run_as']['user_name'] = db_user
 
     for task in new_settings['new_settings']['tasks']:
-      task['email_notifications']['on_success'] = [db_user]
+      #task['email_notifications']['on_success'] = [db_user]
       task['email_notifications']['on_failure'] = [db_user]
     return new_settings
 
