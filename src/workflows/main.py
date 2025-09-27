@@ -47,10 +47,10 @@ new_settings = load_settings('nytimes')
 
 resp = update_settings(url, headers, new_settings)
 
-if resp == 200:
+if resp.status_code == 200:
   print('Databricks job update successfully')
 else: 
-  print('Error uploading the job: ', resp.content)
+  print(f'Error uploading the job: ', resp.content)
 
   
 
