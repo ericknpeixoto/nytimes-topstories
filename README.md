@@ -84,17 +84,17 @@ This is where we start to do some treatments in our data. The columns are rename
 \
 **1.1.4 Gold Data Layer**
 
-The first version of the Gold Layer contains 2 tables:
+The gold layer aims to serve the analytics proccess, so it contains tables optimized with summarized data. It contains:
 
 - Daily Trending Topics: a simple count of the stories for each topic and day
 - Last Month Top Authors: a count of how many stories each author had in the main page in the last 30 days.
+- Weekly Trending Persons: a count of how many times each public figure is mentioned in the stories each week
 
-Since both the Stories's topics and authors are a array-like information, I had to explode it to identify cases where an author has worked alonged with others, and so I've counted it as a story for each one of them.
+Since the Stories's topics,authors and persons are a array-like information, I had to explode it to identify cases where, for an example, an author has worked alonged with others, and so I've counted it as a story for each one of them.
 
 In the coming updates, I aim to add other 2 tables:
 
 - Trending organizations (Daily or Weekly)
-- Trending persons (Daily or Weekly)
 
 Also, I shall refactor the code so the gold layer ingestions keeps a pattern with the other layers.
 
