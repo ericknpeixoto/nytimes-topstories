@@ -42,7 +42,7 @@ The pipeline has been built using the Medallion Architecture. It divides the pro
 \
 **1.1.1 Raw Data Layer**
 
-The raw data is extracted ins JSON format from the NY Times API through a Lambda Function scheduled to run daily at 19 p.m (UTC). The data is saved in a S3 Bucket in AWS without additional treatment but the inclusion of the reference date of when the news were extracted.
+The raw data is extracted ins JSON format from the NY Times API through a Lambda Function scheduled to run daily at 7 p.m (UTC). The data is saved in a S3 Bucket in AWS without additional treatment but the inclusion of the reference date of when the news were extracted.
 
 \
 **1.1.2 Bronze Data Layer**
@@ -89,14 +89,11 @@ The gold layer aims to serve the analytics proccess, so it contains tables optim
 - Daily Trending Topics: a simple count of the stories for each topic and day
 - Last Month Top Authors: a count of how many stories each author had in the main page in the last 30 days.
 - Weekly Trending Persons: a count of how many times each public figure is mentioned in the stories each week
+- Last Month Trendings Organizations: a count of how many stories each organizations (enterprises, political parties etc) had in the main page in the last 30 day
 
 Since the Stories's topics,authors and persons are a array-like information, I had to explode it to identify cases where, for an example, an author has worked alonged with others, and so I've counted it as a story for each one of them.
 
-In the coming updates, I aim to add other 2 tables:
-
-- Trending organizations (Daily or Weekly)
-
-Also, I shall refactor the code so the gold layer ingestions keeps a pattern with the other layers.
+In the coming updates, the code will be refactored the gold layer ingestions keeps a pattern with the other layers.
 
 #### 1.2 Databricks Workflows
 
