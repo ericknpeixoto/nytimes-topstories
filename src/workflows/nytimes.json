@@ -76,7 +76,7 @@
         "webhook_notifications": {}
       },
       {
-        "task_key": "Gold_Ingestion_Daily_Trending_Topics",
+        "task_key": "G_Daily_Trending_Topics",
         "depends_on": [
           {
             "task_key": "Silver_Ingestion_TopStories"
@@ -111,7 +111,7 @@
         "webhook_notifications": {}
       },
       {
-        "task_key": "Gold_Ingestion_Last_Month_Top_Authors",
+        "task_key": "G_Last_Month_Top_Authors",
         "depends_on": [
           {
             "task_key": "Silver_Ingestion_TopStories"
@@ -127,6 +127,41 @@
             "database_to": "gold",
             "schema_name_to": "nytimes",
             "table_name_to": "top_authors_last_month",
+            "partition_field_to": "ref_date"
+          },
+          "source": "GIT"
+        },
+        "timeout_seconds": 0,
+
+        "email_notifications": {
+          "on_failure": [
+            "DATABRICKS_USER"
+          ]
+        },
+        "notification_settings": {
+          "no_alert_for_skipped_runs": false,
+          "no_alert_for_canceled_runs": false,
+          "alert_on_last_attempt": false
+        },
+        "webhook_notifications": {}
+      },
+      {
+        "task_key": "G_Weekly_Top_Persons",
+        "depends_on": [
+          {
+            "task_key": "Silver_Ingestion_TopStories"
+          }
+        ],
+        "run_if": "ALL_SUCCESS",
+        "notebook_task": {
+          "notebook_path": "src/gold/Weekly Top Persons",
+          "base_parameters": {
+            "database_from": "silver",
+            "schema_name_from": "nytimes",
+            "table_name_from": "top_stories",
+            "database_to": "gold",
+            "schema_name_to": "nytimes",
+            "table_name_to": "weekly_trending_persons",
             "partition_field_to": "ref_date"
           },
           "source": "GIT"
