@@ -156,13 +156,14 @@
         "notebook_task": {
           "notebook_path": "src/gold/Weekly Top Persons",
           "base_parameters": {
-            "database_from": "silver",
-            "schema_name_from": "nytimes",
-            "table_name_from": "top_stories",
-            "database_to": "gold",
-            "schema_name_to": "nytimes",
-            "table_name_to": "weekly_trending_persons",
-            "partition_field_to": "ref_date"
+            "src_catalog": "silver",
+            "src_schema": "nytimes",
+            "src_table": "top_stories",
+            "src_partition": "ref_date",
+            "tgt_catalog": "gold",
+            "tgt_schema": "nytimes",
+            "tgt_table": "weekly_trending_persons",
+            "tgt_partition": "ref_date"
           },
           "source": "GIT"
         },
