@@ -84,15 +84,17 @@
         ],
         "run_if": "ALL_SUCCESS",
         "notebook_task": {
-          "notebook_path": "src/gold/Daily Trending Topics",
+          "notebook_path": "src/gold/Gold - Ingestion",
           "base_parameters": {
-            "database_from": "silver",
-            "schema_name_from": "nytimes",
-            "table_name_from": "top_stories",
-            "database_to": "gold",
-            "schema_name_to": "nytimes",
-            "table_name_to": "daily_trending_topics",
-            "partition_field_to": "ref_date"
+            "src_catalog": "silver",
+            "src_schema": "nytimes",
+            "src_table": "top_stories",
+            "src_partition": "ref_date",
+            "tgt_catalog": "gold",
+            "tgt_schema": "nytimes",
+            "tgt_table": "daily_trending_topics",
+            "tgt_partition": "ref_date",
+            "partition_type": "day"
           },
           "source": "GIT"
         },
@@ -111,7 +113,7 @@
         "webhook_notifications": {}
       },
       {
-        "task_key": "G_LastMonth_Top_Authors",
+        "task_key": "G_Last_30d_Top_Authors",
         "depends_on": [
           {
             "task_key": "S_Top_Stories"
@@ -119,15 +121,17 @@
         ],
         "run_if": "ALL_SUCCESS",
         "notebook_task": {
-          "notebook_path": "src/gold/Last Month Top Authors",
+          "notebook_path": "src/gold/Gold - Ingestion",
           "base_parameters": {
-            "database_from": "silver",
-            "schema_name_from": "nytimes",
-            "table_name_from": "top_stories",
-            "database_to": "gold",
-            "schema_name_to": "nytimes",
-            "table_name_to": "top_authors_last_month",
-            "partition_field_to": "ref_date"
+            "src_catalog": "silver",
+            "src_schema": "nytimes",
+            "src_table": "top_stories",
+            "src_partition": "ref_date",
+            "tgt_catalog": "gold",
+            "tgt_schema": "nytimes",
+            "tgt_table": "last_30d_top_authors",
+            "tgt_partition": "ref_date",
+            "partition_type": "last_30d"
           },
           "source": "GIT"
         },
@@ -154,7 +158,7 @@
         ],
         "run_if": "ALL_SUCCESS",
         "notebook_task": {
-          "notebook_path": "src/gold/Weekly Top Persons",
+          "notebook_path": "src/gold/Gold - Ingestion",
           "base_parameters": {
             "src_catalog": "silver",
             "src_schema": "nytimes",
@@ -163,7 +167,8 @@
             "tgt_catalog": "gold",
             "tgt_schema": "nytimes",
             "tgt_table": "weekly_trending_persons",
-            "tgt_partition": "ref_date"
+            "tgt_partition": "ref_date",
+            "partition_type": "week"
           },
           "source": "GIT"
         },
@@ -182,7 +187,7 @@
         "webhook_notifications": {}
       },
       {
-        "task_key": "G_LastMonth_Trending_Organizations",
+        "task_key": "G_Last_30d_Trending_Organizations",
         "depends_on": [
           {
             "task_key": "S_Top_Stories"
@@ -190,15 +195,17 @@
         ],
         "run_if": "ALL_SUCCESS",
         "notebook_task": {
-          "notebook_path": "src/gold/Last Month Trending Organizations",
+          "notebook_path": "src/gold/Gold - Ingestion",
           "base_parameters": {
-            "database_from": "silver",
-            "schema_name_from": "nytimes",
-            "table_name_from": "top_stories",
-            "database_to": "gold",
-            "schema_name_to": "nytimes",
-            "table_name_to": "last_montj_trending_organizations",
-            "partition_field_to": "ref_date"
+            "src_catalog": "silver",
+            "src_schema": "nytimes",
+            "src_table": "top_stories",
+            "src_partition": "ref_date",
+            "tgt_catalog": "gold",
+            "tgt_schema": "nytimes",
+            "tgt_table": "last_30d_trending_organizations",
+            "tgt_partition": "ref_date",
+            "partition_type": "last_30d"
           },
           "source": "GIT"
         },
