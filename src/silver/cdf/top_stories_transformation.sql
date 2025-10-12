@@ -9,6 +9,6 @@ SELECT
   des_facet AS ds_topics,
   org_facet AS ds_organizations,
   per_facet AS ds_persons,
-  published_date,
-  ref_date AS ref_date
+  DATE(published_date) AS published_date,
+  DATE(ref_date) AS ref_date
 FROM source_table
