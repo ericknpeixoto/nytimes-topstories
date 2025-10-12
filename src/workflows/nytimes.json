@@ -15,7 +15,7 @@
     "max_concurrent_runs": 1,
     "tasks": [
       {
-        "task_key": "B_Top_Stories",
+        "task_key": "Bronze_Top_Stories",
         "run_if": "ALL_SUCCESS",
         "notebook_task": {
           "notebook_path": "src/bronze/Bronze - Ingestion",
@@ -41,23 +41,23 @@
         "webhook_notifications": {}
       },
       {
-        "task_key": "S_Top_Stories",
+        "task_key": "Silver_Top_Stories",
         "depends_on": [
           {
-            "task_key": "B_Top_Stories"
+            "task_key": "Bronze_Top_Stories"
           }
         ],
         "run_if": "ALL_SUCCESS",
         "notebook_task": {
           "notebook_path": "src/silver/cdf/Silver - Ingestion",
           "base_parameters": {
-            "database_from": "bronze",
-            "schema_name_from": "nytimes",
-            "table_name_from": "top_stories",
-            "database_to": "silver",
-            "schema_name_to": "nytimes",
-            "table_name_to": "top_stories",
-            "partition_field_to": "ref_date"
+            "src_catalog": "bronze",
+            "src_schema": "nytimes",
+            "src_table": "top_stories",
+            "tgt_catalog": "silver",
+            "tgt_schema": "nytimes",
+            "tgt_table": "top_stories",
+            "tgt_partition": "ref_date"
           },
           "source": "GIT"
         },
@@ -76,10 +76,10 @@
         "webhook_notifications": {}
       },
       {
-        "task_key": "G_Daily_Trending_Topics",
+        "task_key": "Gold_Daily_Trending_Topics",
         "depends_on": [
           {
-            "task_key": "S_Top_Stories"
+            "task_key": "Silver_Top_Stories"
           }
         ],
         "run_if": "ALL_SUCCESS",
@@ -113,10 +113,10 @@
         "webhook_notifications": {}
       },
       {
-        "task_key": "G_Last_30d_Top_Authors",
+        "task_key": "Gold_Last_30d_Top_Authors",
         "depends_on": [
           {
-            "task_key": "S_Top_Stories"
+            "task_key": "Silver_Top_Stories"
           }
         ],
         "run_if": "ALL_SUCCESS",
@@ -150,10 +150,10 @@
         "webhook_notifications": {}
       },
       {
-        "task_key": "G_Weekly_Trending_Persons",
+        "task_key": "Gold_Weekly_Trending_Persons",
         "depends_on": [
           {
-            "task_key": "S_Top_Stories"
+            "task_key": "Silver_Top_Stories"
           }
         ],
         "run_if": "ALL_SUCCESS",
@@ -187,10 +187,10 @@
         "webhook_notifications": {}
       },
       {
-        "task_key": "G_Last_30d_Trending_Organizations",
+        "task_key": "Gold_Last_30d_Trending_Organizations",
         "depends_on": [
           {
-            "task_key": "S_Top_Stories"
+            "task_key": "Silver_Top_Stories"
           }
         ],
         "run_if": "ALL_SUCCESS",
