@@ -21,9 +21,9 @@
     week_start,
     week_end,
     concat(
-      split_part(regexp_replace(person, r'\\s\\(\\d\\d\\d\\d\\-?.?.?.?.', ''), ',', '2'),
+      split_part(regexp_replace(person, '\\s\\(\\d\\d\\d\\d\\-?.?.?.?.', ''), ',', '2'),
       ' ',
-      split_part(regexp_replace(person, r'\\s\\(\\d\\d\\d\\d\\-?.?.?.?.', ''), ',', '1')
+      split_part(regexp_replace(person, '\\s\\(\\d\\d\\d\\d\\-?.?.?.?.', ''), ',', '1')
     ) AS person,
     COUNT(*) AS mentions,
     week_end AS ref_date
