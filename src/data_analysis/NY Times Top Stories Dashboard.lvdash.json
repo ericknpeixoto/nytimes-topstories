@@ -1,0 +1,739 @@
+{
+  "datasets": [
+    {
+      "name": "1188d399",
+      "displayName": "Trending Topics",
+      "queryLines": [
+        "SELECT\r\n",
+        "    topic,\r\n",
+        "    stories\r\n",
+        "FROM gold.nytimes.daily_trending_topics\r\n",
+        "WHERE ref_date = :selected_date\r\n",
+        "ORDER BY stories DESC\r\n",
+        "LIMIT 10"
+      ],
+      "parameters": [
+        {
+          "displayName": "selected_date",
+          "keyword": "selected_date",
+          "dataType": "DATE",
+          "defaultSelection": {
+            "values": {
+              "dataType": "DATE",
+              "values": [
+                {
+                  "value": "2025-09-02T00:00:00.000"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "catalog": "gold",
+      "schema": "nytimes"
+    },
+    {
+      "name": "cbc5408a",
+      "displayName": "Trending Persons",
+      "queryLines": [
+        "SELECT \r\n",
+        "    person, \r\n",
+        "    mentions\r\n",
+        "FROM gold.nytimes.weekly_trending_persons\r\n",
+        "WHERE week_number = WEEKOFYEAR(:selected_date)\r\n",
+        "ORDER BY mentions DESC\r\n",
+        "LIMIT 10"
+      ],
+      "parameters": [
+        {
+          "displayName": "selected_date",
+          "keyword": "selected_date",
+          "dataType": "DATE",
+          "defaultSelection": {
+            "values": {
+              "dataType": "DATE",
+              "values": [
+                {
+                  "value": "2025-09-02T00:00:00.000"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "908ad494",
+      "displayName": "Trending Organizations",
+      "queryLines": [
+        "SELECT\r\n",
+        "    organization,\r\n",
+        "    stories\r\n",
+        "FROM gold.nytimes.last_30d_trending_organizations\r\n",
+        "WHERE ref_date = :selected_date\r\n",
+        "ORDER BY stories DESC\r\n",
+        "LIMIT 10"
+      ],
+      "parameters": [
+        {
+          "displayName": "selected_date",
+          "keyword": "selected_date",
+          "dataType": "DATE",
+          "defaultSelection": {
+            "values": {
+              "dataType": "DATE",
+              "values": [
+                {
+                  "value": "2025-09-02T00:00:00.000"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "cbae9915",
+      "displayName": "Top Authors",
+      "queryLines": [
+        "SELECT\r\n",
+        "    author,\r\n",
+        "    stories\r\n",
+        "FROM gold.nytimes.last_30d_top_authors\r\n",
+        "WHERE ref_date = :selected_date\r\n",
+        "ORDER BY stories DESC\r\n",
+        "LIMIT 10"
+      ],
+      "parameters": [
+        {
+          "displayName": "selected_date",
+          "keyword": "selected_date",
+          "dataType": "DATE",
+          "defaultSelection": {
+            "values": {
+              "dataType": "DATE",
+              "values": [
+                {
+                  "value": "2025-09-02T00:00:00.000"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "name": "95d749cd",
+      "displayName": "Main Page",
+      "layout": [
+        {
+          "widget": {
+            "name": "ce5f345b",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "1188d399",
+                  "fields": [
+                    {
+                      "name": "sum(stories)",
+                      "expression": "SUM(`stories`)"
+                    },
+                    {
+                      "name": "topic",
+                      "expression": "`topic`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "sum(stories)",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "axis": {
+                    "title": "Stories Count",
+                    "hideTitle": true,
+                    "hideGrid": true,
+                    "hideLabels": true
+                  },
+                  "format": {
+                    "type": "number-plain",
+                    "abbreviation": "compact",
+                    "decimalPlaces": {
+                      "type": "max",
+                      "places": 2
+                    },
+                    "hideGroupSeparator": false
+                  }
+                },
+                "y": {
+                  "fieldName": "topic",
+                  "scale": {
+                    "type": "categorical",
+                    "sort": {
+                      "by": "x-reversed"
+                    }
+                  },
+                  "axis": {
+                    "hideTitle": true,
+                    "hideLabels": false
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              },
+              "frame": {
+                "title": "Trending topics this day",
+                "showTitle": true,
+                "showDescription": false
+              },
+              "mark": {
+                "colors": [
+                  "#07389D",
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 2
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 3
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 4
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 5
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 6
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 7
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 8
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 9
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 10
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 3,
+            "width": 3,
+            "height": 7
+          }
+        },
+        {
+          "widget": {
+            "name": "b2d36a1f",
+            "multilineTextboxSpec": {
+              "lines": [
+                "<span style=\"font-size: 36px;line-height: 1.5;\">**Top Stories**</span>\n",
+                "\n",
+                "<span style=\"font-size: 24px;\">New York Times</span>"
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 6,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "43637c42",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "cbc5408a",
+                  "fields": [
+                    {
+                      "name": "person",
+                      "expression": "`person`"
+                    },
+                    {
+                      "name": "mentions",
+                      "expression": "`mentions`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 1,
+              "widgetType": "table",
+              "encodings": {
+                "columns": [
+                  {
+                    "fieldName": "person",
+                    "booleanValues": [
+                      "false",
+                      "true"
+                    ],
+                    "imageUrlTemplate": "{{ @ }}",
+                    "imageTitleTemplate": "{{ @ }}",
+                    "imageWidth": "",
+                    "imageHeight": "",
+                    "linkUrlTemplate": "{{ @ }}",
+                    "linkTextTemplate": "{{ @ }}",
+                    "linkTitleTemplate": "{{ @ }}",
+                    "linkOpenInNewTab": true,
+                    "type": "string",
+                    "displayAs": "string",
+                    "visible": true,
+                    "order": 100000,
+                    "title": "person",
+                    "allowSearch": false,
+                    "alignContent": "left",
+                    "allowHTML": false,
+                    "highlightLinks": false,
+                    "useMonospaceFont": false,
+                    "preserveWhitespace": false
+                  },
+                  {
+                    "fieldName": "mentions",
+                    "numberFormat": "0",
+                    "booleanValues": [
+                      "false",
+                      "true"
+                    ],
+                    "imageUrlTemplate": "{{ @ }}",
+                    "imageTitleTemplate": "{{ @ }}",
+                    "imageWidth": "",
+                    "imageHeight": "",
+                    "linkUrlTemplate": "{{ @ }}",
+                    "linkTextTemplate": "{{ @ }}",
+                    "linkTitleTemplate": "{{ @ }}",
+                    "linkOpenInNewTab": true,
+                    "type": "integer",
+                    "displayAs": "number",
+                    "visible": true,
+                    "order": 100001,
+                    "title": "mentions",
+                    "allowSearch": false,
+                    "alignContent": "center",
+                    "allowHTML": false,
+                    "highlightLinks": false,
+                    "useMonospaceFont": false,
+                    "preserveWhitespace": false,
+                    "cellFormat": {
+                      "default": {
+                        "foregroundColor": null
+                      },
+                      "rules": []
+                    }
+                  }
+                ]
+              },
+              "invisibleColumns": [],
+              "allowHTMLByDefault": false,
+              "itemsPerPage": 25,
+              "paginationSize": "default",
+              "condensed": false,
+              "withRowNumber": true,
+              "frame": {
+                "showTitle": true,
+                "showDescription": false,
+                "title": "Most mentioned persons this week",
+                "description": "Week of year mentions for the selected date"
+              }
+            }
+          },
+          "position": {
+            "x": 3,
+            "y": 3,
+            "width": 3,
+            "height": 7
+          }
+        },
+        {
+          "widget": {
+            "name": "89287688",
+            "queries": [
+              {
+                "name": "parameter_dashboards/01f0ac22c58116749d4cfbe329c74fc9/datasets/01f0ac22d2371fbdb1bd359773f25591_selected_date",
+                "query": {
+                  "datasetName": "1188d399",
+                  "parameters": [
+                    {
+                      "name": "selected_date",
+                      "keyword": "selected_date"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              },
+              {
+                "name": "parameter_dashboards/01f0ac22c58116749d4cfbe329c74fc9/datasets/01f0ac2547871a908e43b4e103f142de_selected_date",
+                "query": {
+                  "datasetName": "cbc5408a",
+                  "parameters": [
+                    {
+                      "name": "selected_date",
+                      "keyword": "selected_date"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              },
+              {
+                "name": "parameter_dashboards/01f0ac22c58116749d4cfbe329c74fc9/datasets/01f0ac29850714889872d4c68c0fb8f3_selected_date",
+                "query": {
+                  "datasetName": "908ad494",
+                  "parameters": [
+                    {
+                      "name": "selected_date",
+                      "keyword": "selected_date"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              },
+              {
+                "name": "parameter_dashboards/01f0ac22c58116749d4cfbe329c74fc9/datasets/01f0ac2b418b1db9ba30039731e52b10_selected_date",
+                "query": {
+                  "datasetName": "cbae9915",
+                  "parameters": [
+                    {
+                      "name": "selected_date",
+                      "keyword": "selected_date"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "filter-date-picker",
+              "encodings": {
+                "fields": [
+                  {
+                    "parameterName": "selected_date",
+                    "queryName": "parameter_dashboards/01f0ac22c58116749d4cfbe329c74fc9/datasets/01f0ac22d2371fbdb1bd359773f25591_selected_date"
+                  },
+                  {
+                    "parameterName": "selected_date",
+                    "queryName": "parameter_dashboards/01f0ac22c58116749d4cfbe329c74fc9/datasets/01f0ac2547871a908e43b4e103f142de_selected_date"
+                  },
+                  {
+                    "parameterName": "selected_date",
+                    "queryName": "parameter_dashboards/01f0ac22c58116749d4cfbe329c74fc9/datasets/01f0ac29850714889872d4c68c0fb8f3_selected_date"
+                  },
+                  {
+                    "parameterName": "selected_date",
+                    "queryName": "parameter_dashboards/01f0ac22c58116749d4cfbe329c74fc9/datasets/01f0ac2b418b1db9ba30039731e52b10_selected_date"
+                  }
+                ]
+              },
+              "frame": {
+                "showTitle": true,
+                "title": "Date"
+              }
+            }
+          },
+          "position": {
+            "x": 3,
+            "y": 2,
+            "width": 3,
+            "height": 1
+          }
+        },
+        {
+          "widget": {
+            "name": "508fb4b9",
+            "multilineTextboxSpec": {
+              "lines": [
+                "Select which date you want do analyze:"
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 2,
+            "width": 3,
+            "height": 1
+          }
+        },
+        {
+          "widget": {
+            "name": "91676a7b",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "908ad494",
+                  "fields": [
+                    {
+                      "name": "stories",
+                      "expression": "`stories`"
+                    },
+                    {
+                      "name": "organization",
+                      "expression": "`organization`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "stories",
+                  "scale": {
+                    "type": "quantitative",
+                    "reverse": false
+                  },
+                  "format": {
+                    "type": "number-plain",
+                    "abbreviation": "compact",
+                    "decimalPlaces": {
+                      "type": "max",
+                      "places": 2
+                    }
+                  },
+                  "axis": {
+                    "hideTitle": true,
+                    "hideGrid": true,
+                    "hideLabels": true
+                  }
+                },
+                "y": {
+                  "fieldName": "organization",
+                  "scale": {
+                    "type": "categorical",
+                    "sort": {
+                      "by": "x-reversed"
+                    }
+                  },
+                  "axis": {
+                    "hideTitle": true
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              },
+              "frame": {
+                "title": "Trending organizations last 30 days",
+                "showTitle": true
+              },
+              "mark": {
+                "colors": [
+                  {
+                    "themeColorType": "selectionColor"
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 2
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 3
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 4
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 5
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 6
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 7
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 8
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 9
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 10
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 10,
+            "width": 6,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "25fee5bc",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "cbae9915",
+                  "fields": [
+                    {
+                      "name": "stories",
+                      "expression": "`stories`"
+                    },
+                    {
+                      "name": "author",
+                      "expression": "`author`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "stories",
+                  "scale": {
+                    "type": "quantitative",
+                    "reverse": false
+                  },
+                  "format": {
+                    "type": "number-plain",
+                    "abbreviation": "compact",
+                    "decimalPlaces": {
+                      "type": "max",
+                      "places": 2
+                    }
+                  },
+                  "axis": {
+                    "hideTitle": true,
+                    "hideGrid": true,
+                    "hideLabels": true
+                  }
+                },
+                "y": {
+                  "fieldName": "author",
+                  "scale": {
+                    "type": "categorical",
+                    "sort": {
+                      "by": "x-reversed"
+                    }
+                  },
+                  "axis": {
+                    "hideTitle": true
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              },
+              "frame": {
+                "title": "Top authors last 30 days",
+                "showTitle": true
+              },
+              "mark": {
+                "colors": [
+                  {
+                    "themeColorType": "selectionColor"
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 2
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 3
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 4
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 5
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 6
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 7
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 8
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 9
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 10
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 16,
+            "width": 6,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS"
+    },
+    {
+      "name": "a00277d7",
+      "displayName": "Global Filters",
+      "pageType": "PAGE_TYPE_GLOBAL_FILTERS"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    },
+    "genieSpace": {
+      "isEnabled": false
+    }
+  }
+}
